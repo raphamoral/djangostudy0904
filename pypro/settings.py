@@ -33,6 +33,7 @@ ALLOWED_HOSTS =config('ALLOWED_HOSTS', cast=Csv())
 AUTH_USER_MODEL ='base.User'
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,7 +47,9 @@ INSTALLED_APPS = [
     'pypro.base',
 ]
 
+
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -73,6 +76,12 @@ TEMPLATES = [
         },
     },
 ]
+INTERNAL_IPS=config('INTERNAL_IPS',cast=Csv(),default='127.0.0.1')
+# configuração django debug toolbar
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.insert(0,'debug.toolbar.middleware.DebugToobarMiddleware')
+
 
 WSGI_APPLICATION = 'pypro.wsgi.application'
 
