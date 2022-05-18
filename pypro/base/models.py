@@ -16,7 +16,7 @@ class UserManager(BaseUserManager):
         if not email:
             raise ValueError("The given username must be set")
         email = self.normalize_email(email)
-        user = self.model( email=email, **extra_fields)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -24,9 +24,9 @@ class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
 
         extra_fields.setdefault("is_superuser", False)
-        return self._create_user( email, password, **extra_fields)
+        return self._create_user(email, password, **extra_fields)
 
-    def create_superuser(self,  email=None, password=None, **extra_fields):
+    def create_superuser(self, email=None, password=None, **extra_fields):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
 
@@ -35,26 +35,19 @@ class UserManager(BaseUserManager):
         if extra_fields.get("is_superuser") is not True:
             raise ValueError("Superuser must have is_superuser=True.")
 
-        return self._create_user( email, password, **extra_fields)
-
-
-
-
+        return self._create_user(email, password, **extra_fields)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
     """
     An abstract base class implementing a fully featured User model with
     admin-compliant permissions.
-
     Username and password are required. Other fields are optional.
     """
 
-
-
     first_name = models.CharField(_("first name"), max_length=150, blank=True)
 
-    email = models.EmailField(_("email address"),unique=True)
+    email = models.EmailField(_("email address"), unique=True)
     is_staff = models.BooleanField(
         _("staff status"),
         default=False,
@@ -76,12 +69,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
-
-
     class Meta:
         verbose_name = _("user")
         verbose_name_plural = _("users")
-
 
     def clean(self):
         super().clean()
@@ -101,5 +91,3 @@ class User(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
-
-
