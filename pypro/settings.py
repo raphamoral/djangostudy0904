@@ -128,7 +128,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
-
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 COLLECTFAST_ENABLED = False
 # STORAGE CONFIGURATION IN S3 AWS
@@ -169,11 +168,11 @@ if SENTRY_DSN:
         # Set traces_sample_rate to 1.0 to capture 100%
         # of transactions for performance monitoring.
         # We recommend adjusting this value in production.
-        #traces_sample_rate=1.0,
+        # traces_sample_rate=1.0,
 
         # If you wish to associate users to errors (assuming you are using
         # django.contrib.auth) you may enable sending PII data.
-       # send_default_pii=True
+        # send_default_pii=True
     )
 
 STATIC_URL = '/static/'
