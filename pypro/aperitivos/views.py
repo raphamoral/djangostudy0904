@@ -1,10 +1,21 @@
 from django.shortcuts import render
 
+class Video:
+    def __init__(self,slug, titulo,youtube_id):
+        self.titulo =titulo
+        self.slug= slug
+        self.youtube_id= youtube_id
+
 # Create your views here.
-def video(request,slug):
-    videos ={'motivacao':{"titulo": "Video Aperitivo: Motivação", "youtube_id":"_UfhOwkwXZ4"},
-    'poo-ramalho':{"titulo": "Programação Orientada a Objetos - Com Luciano Ramalho", "youtube_id": "_EblOW9nfkNA"},}
+videos = [Video( 'motivacao',  "Video Aperitivo: Motivação","_UfhOwkwXZ4"),
+          Video( "poo-ramalho", "Programação Orientada a Objetos - Com Luciano Ramalho",
+            "_EblOW9nfkNA")]
+videos_dct = {v.slug: v for v in videos}
 
-    video =videos[slug]
+def indice(request):
+    return render(request, "aperitivos/indice.html", context={'videos': videos})
 
-    return render(request,"aperitivos/video.html", context={"video": video})
+
+def video(request, slug):
+    video = videos_dct[slug]
+    return render(request, "aperitivos/video.html", context={"video": video})
