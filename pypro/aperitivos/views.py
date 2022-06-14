@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse
 
 class Video:
     def __init__(self,slug, titulo,youtube_id):
@@ -6,9 +7,12 @@ class Video:
         self.slug= slug
         self.youtube_id= youtube_id
 
+    def get_absolute_url(self):
+        return reverse('aperitivos:video',args=(self.slug,))
+
 # Create your views here.
-videos = [Video( 'motivacao',  "Video Aperitivo: Motivação","_UfhOwkwXZ4"),
-          Video( "poo-ramalho", "Programação Orientada a Objetos - Com Luciano Ramalho",
+videos = [Video('motivacao',  "Video Aperitivo: Motivação","_UfhOwkwXZ4"),
+          Video("poo-ramalho", "Programação Orientada a Objetos - Com Luciano Ramalho",
             "_EblOW9nfkNA")]
 videos_dct = {v.slug: v for v in videos}
 
