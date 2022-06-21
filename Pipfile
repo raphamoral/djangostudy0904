@@ -15,10 +15,14 @@ django-s3-folder-storage = "*"
 collectfast = "*"
 django-debug-toolbar = "*"
 sentry-sdk = "*"
+atomicwrites = "*"
+colorama = "*"
+tzdata = "*"
 
 [dev-packages]
 pytest-cov = "*"
 codecov = "*"
+model-mommy = "*"
 
 [requires]
 python_version = "3.9"
