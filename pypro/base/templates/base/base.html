@@ -9,7 +9,8 @@
     <title>{% block title %}Raphael Moral- Python Developer{% endblock title %}</title>
 
 
-    <meta name="description" content={% block description %}"Portifólio de Raphael Moral-Curso Python Pro"{% endblock description %}>
+    <meta name="description"
+          content={% block description %}"Portifólio de Raphael Moral-Curso Python Pro"{% endblock description %}>
     <meta name="author" content="Raphael Moral">
     <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}"/>
     <link href="{% static "css/bootstrap.min.css" %}" type="text/css" rel="stylesheet">
@@ -29,18 +30,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Modelos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            {%  for modulo in MODULOS %}
-            <a class = "dropdown-item" href ="#">{{ modulo.titulo }}</a>
-            <div class="dropdown-divider"></div>
-            {% endfor %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Modelos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for modulo in MODULOS %}
+                            <a class="dropdown-item" href="{{ modulo.get_absolute_url }}">{{ modulo.titulo }}</a>
+                            <div class="dropdown-divider"></div>
+                        {% endfor %}
 
-        </div>
-      </li>
+                    </div>
+                </li>
 
             </ul>
 

@@ -18,6 +18,7 @@ sentry-sdk = "*"
 atomicwrites = "*"
 colorama = "*"
 tzdata = "*"
+django-ordered-model = "*"
 
 [dev-packages]
 pytest-cov = "*"
